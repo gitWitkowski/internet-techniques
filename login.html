@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+        }
+        </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <h1>
+            Wizualizacja algorytmów sortowania
+        </h1>
+    </header>
+
+    <nav id="nav-bar">
+        <ul id="nav-list">
+            <li><a class="" href="#">O projekcie</a></li>
+          </ul>
+    </nav>
+
+    <section id="section-panel" style="height: 70vh;">
+        <div style="display:flex;justify-content:center;align-items:center;height: 100%;">
+            <form>
+                <label >Login:</label>
+                <input type="text" id="email" name="login" placeholder="Wprowadź login...">
+    
+                <label >Hasło:</label>
+                <input type="password" id="pass" name="password" placeholder="Wprowadź hasło...">
+                <br/>
+                <div style="display:flex;justify-content:center;align-items:center;">
+                    <input type="button" name="Zaloguj" value="Zaloguj" onclick="loginUser()" class="btn">
+                </div>
+                <label id="login_inf"></label>
+            </form>
+          </div>
+        
+    </section>
+    
+    <footer>
+        <p>Witkowski Maciej</p>
+    </footer>
+    <script src="js/connection.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

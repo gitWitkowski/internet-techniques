@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="https://en.wikipedia.org/wiki/Bubble_sort" id="link1">
+            <h2>
+                Poznaj wybrany algorytm lepiej
+            </h2>
+        </a>
+        <a href="https://youtu.be/kPRA0W1kECg?si=O-Wz1nim40No5Gyg" id="link2">
+            <h2>
+                Ciekawy projekt o podobnej tematyce
+            </h2>
+        </a>
+    </div>
+    
+
+    <header id="main-header">
+        <h1>
+            Wizualizacja algorytmów sortowania
+        </h1>
+    </header>
+
+    <nav id="nav-bar">
+        <ul id="nav-list">
+            <li><a class="" href="#">.</a></li>
+          </ul>
+    </nav>
+
+    <section id="section-panel">
+        <article id="article-panel">
+            <canvas id="myCanvas" width="1000" height="700" style="border:2px solid #000000;">
+            </canvas>
+            <div id="opis">
+                <p>
+                    Strona internetowa powstała jako projekt z przedmiotu Techniki Internetowe. Pełni ona funkcje serwisu informacyjnego, z którego użytkownicy mogą zasięgnąć podstawowych informacji o wybranych algorytmach sortowania. Dzięki wizualizacji kolejnych kroków wybranego algorytmu użytkownik może lepiej przeanalizować i zrozumieć jego działanie. Serwis udostępnia możliwość wyboru jednego z 6 dostępnych algorytmów, pozwala na modyfikację ilości sortowanych elementów (przedział od 10 do 200), a także ich koloru bazowego i kolorów pomocniczych (używanych między innymi do podświetlania elementów, na których przeprowadzane są w danej chwili operacje, takie jak porównywanie ich wartości, bądź zamiana miejscami). Dodatkowo użytkownik może wybrać szybkość animacji - odstępy między kolejnymi krokami algorytmu w milisekundach (od 1 do 1000). Po rozpoczęciu wizualizacji sortowania, użytkownik ma możliwość zatrzymania jej przyciskiem Stop. Dodatkowo, gdy animacja nie została uruchomiona, istnieje możliwość przemieszania elementów tablicy.
+                </p>
+                <br>
+                <p>
+                    Po lewej stronie znajdują się 2 zakładki, które wysuwają się po najechaniu na nie kursorem myszy. Po kliknięciu na pierwszą z nich, zostajemy przekierowani do artykułu, gdzie możemy pogłębić wiedzę na temat akutalnie wybranego algorytmu sortowania. Druga zakładka przekierowuje nas do filmu, prezentującego 15 różnych algorytmów sortowania. Osobiście polecam w wolnej chwili go zobaczyć, ponieważ został wykonany w ciekawy sposób.  
+                </p>
+                <br>
+                <p>
+                    Strona umożliwia korzystanie z jej zawartości bez logowania i rejestracji. Istnieje jednak możliwość założenia konta w serwisie, które rozszerza jego funkcjonalność. Zalogowani i zarejestrowani użytkownicy mogą dodatkowo zapisywać dowolone ulubione, bądź ciekawe konfiguracje ustawień wizualizacji, aby później wczytać je i uruchomić ponownie.
+                </p>
+                <br>
+                <p>
+                    Serwis został stworzony przy użyciu takich technologii jak HTML5 i CSS. Wszystkie strony przechodzą walidację W3C pomyślnie, bez błędów. Po stronie klienta użyto skryptów napisanych w języku JavaScript. Połączenie między klientem, a serwerem realizowane jest za pomocą technologii AJAX. Skrypty po stronie serwera napisane są w języku PHP, a autoryzacja użytkownika opiera się o mechanizm sesji. Dane użytkowników zapisane są w dokumentowej bazie danych - MongoDB. Przed zapisaniem do bazy danych, hasła użytkowników są haszowane za pomocą wbudowanych funkcji PHP <code>password_hash()</code>, a przy autoryzacji użyta jest funkcja <code>password_verify()</code>.
+                </p>
+            </div>
+        </article>
+        <aside id="aside-panel">
+            <select id="mySelect">
+                <option value="0">Sortowanie bąbelkowe</option>
+                <option value="1">Sortowanie przez wstawianie</option>
+                <option value="2">Sortowanie przez wybieranie</option>
+                <option value="3">Sortowanie koktajlowe</option>
+                <option value="4">Sortowanie przez scalanie</option>
+                <option value="5">Sortowanie Shella</option>
+          </select>
+
+          <div class="slidecontainer">
+            
+            <label >Ilość elementów: <span id="numOfElementsLabel">50</span></label>
+            <br/>
+            <input type="range" min="10" max="200" value="50" class="slider" id="numOfElements" oninput="changeNumOfElements(this.value)" >
+        </div>
+    
+        <div class="slidecontainer">
+            <label >Szybkość: <span id="delayLabel">100</span>[ms]</label>
+            <br/>
+            <input type="range" min="1" max="100" value="67" class="slider" id="delay" oninput="changeDelay(this.value)" >
+        </div>
+
+        <button id="start_btn" class="btn" onclick="start()">Start</button>
+    <button id="stop_btn" class="btn" onclick="request_stop()">Stop</button>
+    <button id="mix_btn" class="btn" onclick="permutateArray()">Wymieszaj elementy</button>
+
+    <div class="colorbox">
+        <label>Kolor elementów</label>
+        <input type="color" id="elem_color" value="#000000" class="color" />
+    </div>
+
+    <div class="colorbox">
+        <label>Kolor 1</label>
+        <input type="color" id="color1" value="#ff0000" class="color"/>
+    </div>
+
+    <div class="colorbox">
+        <label>Kolor 2</label>
+        <input type="color" id="color2" value="#0000ff" class="color"/>
+    </div>
+
+    <div class="colorbox">
+        <label>Kolor 3</label>
+        <input type="color" id="color3" value="#00ff00" class="color"/>
+    </div>
+
+    
+    <div id="settings"></div>
+    
+
+        </aside>
+    </section>
+    
+    
+
+    <footer>
+        <p>Witkowski Maciej</p>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="js/connection.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/save.js"></script>
+</body>
+
+</html>
+
+
+
